@@ -31,6 +31,21 @@ class StickyTable extends PureComponent {
     super(props);
 
     this.index = index = index + 1;
+    this.onScroll = this.onScroll.bind(this);
+  }
+
+  onScroll(e) {
+    if (this.props.onScroll) {
+      const { target } = e.nativeEvent;
+      this.props.onScroll({
+        scrollTop: target.scrollTop,
+        scrollHeight: target.scrollHeight,
+        clientHeight: target.clientHeight,
+        scrollLeft: target.scrollLeft,
+        scrollWidth: target.scrollWidth,
+        clientWidth: target.clientWidth
+      });
+    }
   }
 
   /**
@@ -38,13 +53,13 @@ class StickyTable extends PureComponent {
    * @returns {undefined}
    */
   render() {
-    var {stickyColumnCount, stickyHeaderCount} = this.props;
+    var { stickyColumnCount, stickyHeaderCount } = this.props;
 
     stickyColumnCount = Math.min(stickyColumnCount, 1);
     stickyHeaderCount = Math.min(stickyHeaderCount, 1);
 
     return (
-      <div className={`sticky-table sticky-table-${this.index}` + (this.props.className || '')}>
+      <div className={`sticky-table sticky-table-${this.index}` + (this.props.className || '')} onScroll={this.onScroll}>
         <style>
           {`
             .sticky-table-${this.index} .sticky-table-row:nth-child(-n+${stickyHeaderCount}) .sticky-table-cell {
@@ -76,4 +91,4 @@ class StickyTable extends PureComponent {
   }
 }
 
-export {StickyTable, Table, Row, Cell};
+export { StickyTable, Table, Row, Cell };

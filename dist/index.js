@@ -102,21 +102,32 @@
       var _this = _possibleConstructorReturn(this, (StickyTable.__proto__ || Object.getPrototypeOf(StickyTable)).call(this, props));
 
       _this.index = index = index + 1;
+      _this.onScroll = _this.onScroll.bind(_this);
       return _this;
     }
 
-    /**
-     * Get the column and header to render
-     * @returns {undefined}
-     */
-
-
     _createClass(StickyTable, [{
+      key: 'onScroll',
+      value: function onScroll(e) {
+        if (this.props.onScroll) {
+          var target = e.nativeEvent.target;
+
+          this.props.onScroll({
+            scrollTop: target.scrollTop,
+            scrollHeight: target.scrollHeight,
+            clientHeight: target.clientHeight,
+            scrollLeft: target.scrollLeft,
+            scrollWidth: target.scrollWidth,
+            clientWidth: target.clientWidth
+          });
+        }
+      }
+    }, {
       key: 'render',
       value: function render() {
         var _props = this.props,
-            stickyColumnCount = _props.stickyColumnCount,
-            stickyHeaderCount = _props.stickyHeaderCount;
+          stickyColumnCount = _props.stickyColumnCount,
+          stickyHeaderCount = _props.stickyHeaderCount;
 
 
         stickyColumnCount = Math.min(stickyColumnCount, 1);
@@ -124,7 +135,7 @@
 
         return _react2.default.createElement(
           'div',
-          { className: 'sticky-table sticky-table-' + this.index + (this.props.className || '') },
+          { className: 'sticky-table sticky-table-' + this.index + (this.props.className || ''), onScroll: this.onScroll },
           _react2.default.createElement(
             'style',
             null,
