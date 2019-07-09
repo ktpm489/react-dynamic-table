@@ -1,7 +1,7 @@
 (function (global, factory) {
-  if (typeof define === "function" && define.amd) {
+  if (typeof define === 'function' && define.amd) {
     define(['exports', 'react', 'prop-types', './Table', './Row', './Cell'], factory);
-  } else if (typeof exports !== "undefined") {
+  } else if (typeof exports !== 'undefined') {
     factory(exports, require('react'), require('prop-types'), require('./Table'), require('./Row'), require('./Cell'));
   } else {
     var mod = {
@@ -13,7 +13,7 @@
 })(this, function (exports, _react, _propTypes, _Table, _Row, _Cell) {
   'use strict';
 
-  Object.defineProperty(exports, "__esModule", {
+  Object.defineProperty(exports, '__esModule', {
     value: true
   });
   exports.Cell = exports.Row = exports.Table = exports.StickyTable = undefined;
@@ -36,17 +36,17 @@
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
+      throw new TypeError('Cannot call a class as a function');
     }
   }
 
-  var _createClass = function () {
+  var _createClass = (function () {
     function defineProperties(target, props) {
       for (var i = 0; i < props.length; i++) {
         var descriptor = props[i];
         descriptor.enumerable = descriptor.enumerable || false;
         descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
+        if ('value' in descriptor) descriptor.writable = true;
         Object.defineProperty(target, descriptor.key, descriptor);
       }
     }
@@ -56,19 +56,19 @@
       if (staticProps) defineProperties(Constructor, staticProps);
       return Constructor;
     };
-  }();
+  }());
 
   function _possibleConstructorReturn(self, call) {
     if (!self) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+      throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called');
     }
 
-    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+    return call && (typeof call === 'object' || typeof call === 'function') ? call : self;
   }
 
   function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    if (typeof superClass !== 'function' && superClass !== null) {
+      throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);
     }
 
     subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -93,7 +93,7 @@
    * width of a cell.
    */
 
-  var StickyTable = function (_PureComponent) {
+  var StickyTable = (function (_PureComponent) {
     _inherits(StickyTable, _PureComponent);
 
     function StickyTable(props) {
@@ -135,7 +135,7 @@
 
         return _react2.default.createElement(
           'div',
-          { className: 'sticky-table sticky-table-' + this.index + (this.props.className || ''), onScroll: this.onScroll },
+          { className: 'sticky-table sticky-table-' + this.index + (this.props.className || ''), onScroll: this.onScroll, ref: this.props.setRef || null },
           _react2.default.createElement(
             'style',
             null,
@@ -151,7 +151,7 @@
     }]);
 
     return StickyTable;
-  }(_react.PureComponent);
+  }(_react.PureComponent));
 
   StickyTable.propTypes = {
     stickyHeaderCount: _propTypes2.default.number,
